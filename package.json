@@ -1,0 +1,31 @@
+{
+  "name": "electron-and-bootstrap-skeleton-project",
+  "productName": "Electron and Boostrap Skeleton Project",
+  "version": "1.0.0",
+  "description": "A skeleton project that includes a ready to go Electron and Bootstrap environment.",
+  "main": "main.js",
+  "repository": "",
+  "author": "Jason Scheunemann",
+  "license": "GPLv2",
+  "devDependencies": {
+    "electron-packager": "^12.1.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron ."
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.3",
+    "electron": "^2.0.4",
+    "electron-context-menu": "^0.10.0",
+    "electron-json-storage": "^4.1.1",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9",
+    "tether": "^1.4.0"
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
+  }
+}
