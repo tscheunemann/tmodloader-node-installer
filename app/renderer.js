@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-require('./classes/class_init.js');
+const classInitializer = require('./classes/class_init.js');
 const contextMenus = require('electron-context-menu');
 
 window.$ = window.jQuery = require('jquery');
@@ -9,4 +9,4 @@ window.Bootstrap = require('bootstrap');
 
 contextMenus();
 
-let controller = classInitializer.getInstance().getDemoInstance();
+classInitializer.getInstance().getDemoInstance();

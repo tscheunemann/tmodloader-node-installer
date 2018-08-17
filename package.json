@@ -8,11 +8,18 @@
   "author": "Jason Scheunemann",
   "license": "GPLv2",
   "devDependencies": {
-    "electron-packager": "^12.1.0"
+    "chai": "^4.1.2",
+    "electron-packager": "^12.1.0",
+    "javascript-state-machine": "^3.1.0",
+    "jshint": "^2.9.6",
+    "lodash": "^4.17.10",
+    "mocha": "^5.2.0"
   },
   "scripts": {
-    "start": "electron .",
-    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron ."
+    "start": "NODE_ENV=development electron .",
+    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron .",
+    "test": "NODE_ENV=testing mocha test -u bdd -R spec && npm run lint",
+    "lint": "jshint --exclude ./node_modules,./test ."
   },
   "dependencies": {
     "bootstrap": "^4.0.0-beta.3",

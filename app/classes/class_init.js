@@ -1,10 +1,9 @@
-'use strict'
+'use strict';
 
-const electron = require('electron');
 const storage = require('electron-json-storage');
-require('./Models/demo-model.js');
-require('./Views/demo-view.js');
-require('./Controllers/demo-controller.js');
+const DemoModel = require('./Models/demo-model.js');
+const DemoView = require('./Views/demo-view.js');
+const DemoController = require('./Controllers/demo-controller.js');
 
 
 var classInitializer = (function() {
@@ -21,13 +20,13 @@ var classInitializer = (function() {
   		var count = textareas.length;
   		for(var i=0;i<count;i++){
   		    textareas[i].onkeydown = function(e){
-  		        if(e.keyCode==9 || e.which==9){
+  		        if(e.keyCode===9 || e.which===9){
   		            e.preventDefault();
   		            var s = this.selectionStart;
   		            this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
   		            this.selectionEnd = s+1;
   		        }
-  		    }
+  		    };
   		}
 
 		// Another application of the initialization code is to hold references
@@ -57,7 +56,7 @@ var classInitializer = (function() {
 				}
 
 				if (!demoModel) {
-					demoModel = new DemoModel({
+					demoModel = new DemoModel(storage, {
 						"first_name": "Jason",
 						"last_name": "Scheunemann"
 					});
@@ -86,4 +85,4 @@ var classInitializer = (function() {
 	};
 })();
 
-global.classInitializer = classInitializer;
+module.exports = classInitializer;

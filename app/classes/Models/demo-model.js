@@ -1,14 +1,22 @@
-require('../HelperClasses/local-persistence.js')
+'use strict';
 
-class DemoModel extends LocalPersistence {
-    constructor(config) {
+const Persistence = require('../HelperClasses/persistence.js');
+
+class DemoModel extends Persistence {
+    constructor(defaults) {
         super();
 
-        this._firstName = (config["first_name"]) ? config["first_name"] : "";
-        this._lastName = (config["last_name"]) ? config["last_name"] : "";
+		let firstName = "";
+		let lastName = "";
 
-        super.setModel(this);
+		if (defaults) {
+			firstName = (defaults.first_name) ? defaults.first_name : "";
+			lastName = (defaults.last_name) ? defaults.last_name : "";
+		}
+
+		this.addPersistentStringProperty("first_name", firstName);
+		this.addPersistentStringProperty("last_name", lastName);
     }
 }
 
-global.DemoModel = DemoModel;
+module.exports = DemoModel;

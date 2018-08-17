@@ -1,8 +1,8 @@
 class DemoView {
     constructor(config) {
-        this._firstNameElement = (config["first_name_element"]) ? config["first_name_element"] : null;
-        this._lastNameElement = (config["last_name_element"]) ? config["last_name_element"] : null;
-        this._processButtonElement = (config["process_button_element"]) ? config["process_button_element"] : null;
+        this._firstNameElement = (config.first_name_element) ? config.first_name_element : null;
+        this._lastNameElement = (config.last_name_element) ? config.last_name_element : null;
+        this._processButtonElement = (config.process_button_element) ? config.process_button_element : null;
     }
 
     setFirstNameField(value) {
@@ -36,4 +36,4 @@ class DemoView {
     }
 }
 
-global.DemoView = DemoView;
+module.exports = DemoView;

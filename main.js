@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const electron = require('electron');
 const app = electron.app;
@@ -7,8 +7,8 @@ const os = require('os');
 const path = require('path');
 const config = require(path.join(__dirname, 'package.json'));
 const BrowserWindow = electron.BrowserWindow;
-const windowWidthScalingFactor = .4;
-const windowHeightScalingFactor = .3;
+const windowWidthScalingFactor = 0.45;
+const windowHeightScalingFactor = 0.3;
 
 app.setName(config.productName);
 
@@ -69,7 +69,9 @@ app.on('ready', function () {
     mainWindow.onbeforeunload = (e) => {
         // Prevent Command-R from unloading the window contents.
         e.returnValue = false;
-    }
-})
+    };
+});
 
-app.on('window-all-closed', () => { app.quit() });
+app.on('window-all-closed', () => {
+    app.quit();
+});

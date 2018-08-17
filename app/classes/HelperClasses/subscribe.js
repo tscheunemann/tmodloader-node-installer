@@ -1,32 +1,27 @@
-let Subscribe = function() {
-	this._listeners = [],
-	this._notifyListeners = function (event) {
-		for (var i = 0; i < this._listeners.length; i++) {
-			if (this._listeners[i].event === event) {
-				if (arguments.length == 1) {
-					this._listeners[i].funct(null);
-				}
-				else if (arguments.length > 2) {
-					arguments.shift;
-					this._listeners[i].funct(arguments);
-				}
-				else {
-					this._listeners[i].funct(arguments[1]);
-				}
-			}
-		}
-	},
+'use strict';
 
-	this.addEventListener = function(event, funct) {
-		var addEvent = true;
+class Subscribe {
+	constructor() {
+		this._listeners = [];
+	}
 
-		for (var i = 0; i < this._listeners.length; i++) {
-			if (this._listeners[i].event === event) {
-				if (this._listeners[i].funct == funct) {
-					addEvent = false;
-				}
+	_notifyListeners(event) {
+		this._listeners.forEach((listener) => {
+			if (listener.event === event) {
+				let args = (arguments.length > 2) ? arguments.shift : ((arguments.length === 1) ? null : arguments[1]);
+				listener.funct(args);
 			}
-		}
+		});
+	}
+
+	notifyListeners() {
+		this._notifyListeners.apply(this, arguments);
+	}
+
+	addEventListener(event, funct) {
+		let addEvent = !(this._listeners.some((listener) => {
+			return (listener.event === event && listener.funct === funct);
+		}));
 
 		if (addEvent) {
 			this._listeners.push({
@@ -35,6 +30,16 @@ let Subscribe = function() {
 			});
 		}
 	}
+
+	removeEventListener(event, funct) {
+		this._listeners.some((listener, index) => {
+			if (listener.event === event && listener.funct === funct) {
+				this._listeners.splice(index, 1);
+				return true;
+			}
+			return false;
+		});
+	}
 }
 
-global.Subscribe = Subscribe;
+module.exports = Subscribe;

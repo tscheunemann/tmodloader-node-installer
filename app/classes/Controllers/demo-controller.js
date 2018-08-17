@@ -1,7 +1,9 @@
+'use strict';
+
 class DemoController {
     constructor(config) {
-        this._model = (config["model"]) ? config["model"] : null;
-        this._view = (config["view"]) ? config["view"] : null;
+        this._model = (config.model) ? config.model : null;
+        this._view = (config.view) ? config.view : null;
 
         // Retrieve first name from storage
 
@@ -21,13 +23,13 @@ class DemoController {
 
         // Automatically persist changes when first name changes
 
-        this._model.addEventListener("onFirstNameChanged", (value) => {
+        this._model.addEventListener("onFirstNameChanged", () => {
             this._model.saveFirstName();
         });
 
         // Automatically persist changes when last name changes
 
-        this._model.addEventListener("onLastNameChanged", (value) => {
+        this._model.addEventListener("onLastNameChanged", () => {
             this._model.saveLastName();
         });
 
@@ -40,4 +42,4 @@ class DemoController {
     }
 }
 
-global.DemoController = DemoController;
+module.exports = DemoController;
