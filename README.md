@@ -1,22 +1,25 @@
-## Electron and Bootstrap Skeleton project
+## tModLoader installer made in Node.js
 
-This project was put together to make it easy to begin developing a desktop app using the electron framework. This project also incorporates an easy to follow MVC implementation as well as local file storage using the electron-json-storage package from NPM.
+This project was meant to replace my bash script that installs tModLoader. This includes support for multiple Steam libraries and also comes with the additional function to add mods. This is currently CLI based but I am in the process of adding a GUI. You can see a preview of the upcoming GUI by typing `npm start` while in the project's directory. 
 
-###### Program execution flow
-- main.js in the root folder
-- index.html in the app folder
-- renderer.js in the app folder
-- class_init.js in the classes folder
-- demo-model.js, demo-view.js, and demo-controller.js in the app/classes/* folders
+This app is still very experimental and some functions may not work as expected.
 
-###### Helper classes
-- app/classes/HelperClasses/subscribe.js, provides easy to use callbacks for async operations
- - Subclassed by the LocalPersistence class
-- app/classes/HelperClasses/local-persistence.js, provides local data storage for string variables from the Subclass
- - Subclassed by demo-model.js
+###### How to install tModLoader with this app
+cd to the project's directory and run `node user_operations.js`
 
-###### Running the Program
-1. Clone the repo `git clone git@gitlabs.net:jason/electron-and-bootstrap-skeleton-project.git` or download the zip file
-2. Change directories into the project `cd electron-and-bootstrap-skeleton-project`
-2. Run `npm install` to install dependencies
-3. Run `npm start` to preview the program
+
+###### How to add mods with this app
+cd to the project's directory and run `node move-mods.js`
+
+
+###### How the user_operations function works
+It will first select the correct Steam directory Terraria is installed in by checking where the `appmanifest_105600.acf` file is in all of your Steam libraries
+
+It will then verify that Terraria is correctly installed and if there is a file missing, this app will open a Steam window that verifies your games files.
+
+It will then download and install tModLoader into the correct directory
+
+###### How the move-mods function works
+It will first check to see if tModLoader is installed and then it will ask for your mods directory. I am working on adding a feature that checks if it is compressed.
+
+It will then move the selected mod into the mod directory
