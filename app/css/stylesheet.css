@@ -1,0 +1,36 @@
+@font-face {
+  font-family: vanilla-extract;
+  src: url(VanillaExtractRegular.ttf);
+}
+
+.header {
+  font-family: vanilla-extract;
+  padding: 60px;
+  text-align: center;
+  background: #F70F6D;
+  color: white;
+  font-size: 30px;
+
+}
+.install_btn {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  -webkit-app-region: no-drag;
+  padding-top: 100px;
+  padding-left: 100px;
+}
+.install_mods_btn {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    -webkit-app-region: no-drag;
+    padding-bottom: 300px;
+    padding-left: 730px;
+    margin-top:-54px;
+}
+::-webkit-scrollbar {
+display: none;
+}

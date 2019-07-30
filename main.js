@@ -7,8 +7,8 @@ const os = require('os');
 const path = require('path');
 const config = require(path.join(__dirname, 'package.json'));
 const BrowserWindow = electron.BrowserWindow;
-const windowWidthScalingFactor = 0.45;
-const windowHeightScalingFactor = 0.3;
+const windowWidthScalingFactor = 0.70;
+const windowHeightScalingFactor = 0.60;
 
 app.setName(config.productName);
 
@@ -28,6 +28,7 @@ app.on('ready', function () {
     let y = Math.ceil(bounds.y + ((bounds.height - height) / 2));
 
     mainWindow = new BrowserWindow({
+        titleBarStyle: 'hidden',
         width: width,
         height: height,
         x: x,

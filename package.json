@@ -12,7 +12,7 @@
     "electron-packager": "^12.1.0",
     "javascript-state-machine": "^3.1.0",
     "jshint": "^2.9.6",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.15",
     "mocha": "^5.2.0"
   },
   "scripts": {
@@ -22,13 +22,30 @@
     "lint": "jshint --exclude ./node_modules,./test ."
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-beta.3",
-    "electron": "^2.0.4",
+    "bootstrap": "^4.3.1",
+    "configparser": "^0.3.6",
+    "copyfiles": "^2.1.1",
+    "cp-file": "^7.0.0",
+    "download-github-release": "^0.3.2",
+    "electron": "^5.0.2",
     "electron-context-menu": "^0.10.0",
-    "electron-json-storage": "^4.1.1",
-    "jquery": "^3.2.1",
+    "electron-json-storage": "^4.1.6",
+    "fs-extra": "^8.1.0",
+    "github-download": "^0.5.0",
+    "jquery": "^3.4.1",
+    "move-file": "^1.2.0",
+    "mv": "^2.1.1",
+    "ncp": "^2.0.0",
+    "node-wget": "^0.4.3",
+    "open": "^6.3.0",
+    "opn": "^6.0.0",
     "popper.js": "^1.12.9",
-    "tether": "^1.4.0"
+    "simple-vdf": "^1.1.1",
+    "temp-dir": "^2.0.0",
+    "tether": "^1.4.0",
+    "unzipper": "^0.10.1",
+    "vdf-reader": "^1.0.1",
+    "vdfjs": "^2.0.3"
   },
   "standard": {
     "globals": [
