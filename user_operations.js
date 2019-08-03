@@ -8,6 +8,7 @@ class Facade {
     }
 
     install_tmod_cb(config) {
+        const ls = require('ls');
         const tempDirectory = require('temp-dir');
         const ncp = require('ncp').ncp;
         const downloadRelease = require('download-github-release');
@@ -23,10 +24,12 @@ class Facade {
         let outputdir = `${tempDirectory}/xmodr-tmp`
         let leaveZipped = false;
         let moduleInstance = globalconf.myInstance();
-        let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'])
+        let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'], config['defSteamFolder'])
+
+        console.log(outputdir)
 
         config['terrariaInstallationFiles'].forEach((files) => {
-            if (fs.existsSync(`${selectedDirectory}/${config['terrariaSteamDir']}/${files}`)) {
+            if (fs.existsSync(`${selectedDirectory}/${files}`)) {
                 console.log(`${files} is installed properly`);
             }
 
@@ -39,10 +42,6 @@ class Facade {
         fs.mkdir(outputdir, { recursive: true }, (err) => {
             if (err) throw err;
         });
-
-        function chmod2() {
-          console.log('does this work?');
-        }
 
         function filterRelease(release) {
             // Filter out prereleases.
@@ -83,17 +82,22 @@ class Facade {
         // );
 
         function testCallback() {
-            config['tModLoaderArray'].forEach((files) => {
 
-              ncp.limit = 16;
-              ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
-                if (err) {
-                  return console.error(err);
-                }
-                console.log('done!');
-              });
-            });
+          for (var file of ls(`/${outputdir}/*`)) {
+            console.log(file.name)
           }
+
+          // config['tModLoaderArray'].forEach((files) => {
+          //
+          //   ncp.limit = 16;
+          //   ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
+          //     if (err) {
+          //       return console.error(err);
+          //     }
+          //     console.log('done!');
+          //   });
+          // });
+        }
 
         downloadtModResources(testCallback);
 

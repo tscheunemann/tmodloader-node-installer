@@ -11,7 +11,7 @@ class GlobalConfig {
                   console.log("test");
                 },
             returnSelectedDirectory:
-                function (vdfRegistryVar, terrariaSteamInstallationDir) {
+                function (vdfRegistryVar, terrariaSteamInstallationDir, defaultSteamFolder) {
                   const homedir = require('os').homedir();
                   const vdf = require('vdfjs');
                   let selectedDirectory;
@@ -20,7 +20,7 @@ class GlobalConfig {
                   let vdf_to_registry = JSON.stringify(data);
                   let nine = JSON.parse(vdf_to_registry);
                   let results = Object.keys(nine.LibraryFolders).filter(folder => Number.isInteger(Number(folder)));
-                  let steamFolders = ['/Users/tyler/Library/Application Support/Steam'];
+                  let steamFolders = [defaultSteamFolder];
 
                   results.forEach((result) => {
                       steamFolders.push(nine.LibraryFolders[result]);
