@@ -24,9 +24,9 @@ class Facade {
         let outputdir = `${tempDirectory}/xmodr-tmp`
         let leaveZipped = false;
         let moduleInstance = globalconf.myInstance();
-        let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'], config['defSteamFolder'])
+        let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'], config['defSteamFolder'], config['terrariaSelectedDirSuffix'])
 
-        console.log(outputdir)
+        console.log(selectedDirectory);
 
         config['terrariaInstallationFiles'].forEach((files) => {
             if (fs.existsSync(`${selectedDirectory}/${files}`)) {

@@ -11,7 +11,7 @@ class GlobalConfig {
                   console.log("test");
                 },
             returnSelectedDirectory:
-                function (vdfRegistryVar, terrariaSteamInstallationDir, defaultSteamFolder) {
+                function (vdfRegistryVar, terrariaSteamInstallationDir, defaultSteamFolder, macSelectedDir) {
                   const homedir = require('os').homedir();
                   const vdf = require('vdfjs');
                   let selectedDirectory;
@@ -32,7 +32,7 @@ class GlobalConfig {
 
                   steamFolders.forEach((path) => {
                       if (fs.existsSync(`${path}/steamapps/appmanifest_105600.acf`)) {
-                          selectedDirectory = `${path}/steamapps/common/Terraria/`;
+                          selectedDirectory = `${path}/steamapps/common/Terraria/${macSelectedDir}`;
                       }
                   });
 
