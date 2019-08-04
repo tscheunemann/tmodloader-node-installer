@@ -19,6 +19,7 @@ class Facade {
         const GlobalConfig = require('./GlobalConfig');
         let globalconf = new GlobalConfig;
         let tModDownloadFiles = [];
+        let outputdirContents = [];
         let user = 'blushiemagic'
         let repo = 'tModLoader'
         let outputdir = `${tempDirectory}/xmodr-tmp`
@@ -83,10 +84,11 @@ class Facade {
 
         function testCallback() {
 
-          for (var file of ls(`/${outputdir}/*`)) {
-            console.log(file.name)
+          for (let file of ls(`/${outputdir}/*`)) {
+            outputdirContents.push(file.file);
           }
 
+          console.log(outputdirContents);
           // config['tModLoaderArray'].forEach((files) => {
           //
           //   ncp.limit = 16;
