@@ -89,16 +89,18 @@ class Facade {
           }
 
           console.log(outputdirContents);
-          // config['tModLoaderArray'].forEach((files) => {
-          //
-          //   ncp.limit = 16;
-          //   ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
-          //     if (err) {
-          //       return console.error(err);
-          //     }
-          //     console.log('done!');
-          //   });
-          // });
+          outputdirContents.forEach((files) => {
+
+            ncp.limit = 16;
+            ncp(`${outputdir}/${files}`, `${selectedDirectory}/${files}`, function (err) {
+              if (err) {
+                return console.error(err);
+              }
+              console.log('done!');
+            });
+          });
+
+          
         }
 
         downloadtModResources(testCallback);
