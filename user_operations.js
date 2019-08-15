@@ -57,6 +57,7 @@ class Facade {
           downloadRelease(user, repo, outputdir, filterRelease, filterAsset, leaveZipped)
             .then(function() {
                 console.log('Successfully retrieved tModLoader files');
+                fs.chmodSync(`${outputdir}/Terraria`, '755');
               })
 
               .catch(function(err) {
@@ -66,21 +67,6 @@ class Facade {
               callback();
               });
         }
-
-        // let newPromise = new Promise(
-        //   function (resolve, reject) {
-        //     config['tModLoaderArray'].forEach((files) => {
-        //
-        //       ncp.limit = 16;
-        //       ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
-        //         if (err) {
-        //           return console.error(err);
-        //         }
-        //         console.log('done!');
-        //       });
-        //     });
-        //   }
-        // );
 
         function testCallback() {
 
@@ -99,10 +85,22 @@ class Facade {
               console.log('done!');
             });
           });
-
-          
         }
 
+        // let newPromise = new Promise(
+        //   function (resolve, reject) {
+        //     config['tModLoaderArray'].forEach((files) => {
+        //
+        //       ncp.limit = 16;
+        //       ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
+        //         if (err) {
+        //           return console.error(err);
+        //         }
+        //         console.log('done!');
+        //       });
+        //     });
+        //   }
+        // );
         downloadtModResources(testCallback);
 
       }
