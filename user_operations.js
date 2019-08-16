@@ -27,7 +27,14 @@ class Facade {
         let moduleInstance = globalconf.myInstance();
         let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'], config['defSteamFolder'], config['terrariaSelectedDirSuffix'])
 
-        console.log(selectedDirectory);
+        function filterRelease(release) {
+            // Filter out prereleases.
+            return release.prerelease === false;
+        }
+
+        function filterAsset(asset) {
+            return asset.name.indexOf(config['os']) >= 0;
+        }
 
         config['terrariaInstallationFiles'].forEach((files) => {
             if (fs.existsSync(`${selectedDirectory}/${files}`)) {
@@ -44,15 +51,6 @@ class Facade {
             if (err) throw err;
         });
 
-        function filterRelease(release) {
-            // Filter out prereleases.
-            return release.prerelease === false;
-        }
-
-        function filterAsset(asset) {
-            return asset.name.indexOf(config['os']) >= 0;
-        }
-
         function downloadtModResources(callback) {
           downloadRelease(user, repo, outputdir, filterRelease, filterAsset, leaveZipped)
             .then(function() {
@@ -68,13 +66,12 @@ class Facade {
               });
         }
 
-        function testCallback() {
+        function movetModLoaderFiles() {
 
           for (let file of ls(`/${outputdir}/*`)) {
             outputdirContents.push(file.file);
           }
 
-          console.log(outputdirContents);
           outputdirContents.forEach((files) => {
 
             ncp.limit = 16;
@@ -87,21 +84,7 @@ class Facade {
           });
         }
 
-        // let newPromise = new Promise(
-        //   function (resolve, reject) {
-        //     config['tModLoaderArray'].forEach((files) => {
-        //
-        //       ncp.limit = 16;
-        //       ncp(`${outputdir}/${files}`, `${selectedDirectory}/${config['terrariaSteamDir']}/${files}`, function (err) {
-        //         if (err) {
-        //           return console.error(err);
-        //         }
-        //         console.log('done!');
-        //       });
-        //     });
-        //   }
-        // );
-        downloadtModResources(testCallback);
+        downloadtModResources(movetModLoaderFiles);
 
       }
 

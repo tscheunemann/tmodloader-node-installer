@@ -6,10 +6,6 @@ class GlobalConfig {
                 function () {
                     console.log("test")
                 },
-            publicMethod2:
-                function () {
-                  console.log("test");
-                },
             returnSelectedDirectory:
                 function (vdfRegistryVar, terrariaSteamInstallationDir, defaultSteamFolder, macSelectedDir) {
                   const homedir = require('os').homedir();
