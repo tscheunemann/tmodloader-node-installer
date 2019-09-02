@@ -27,6 +27,8 @@ class Facade {
         let moduleInstance = globalconf.myInstance();
         let selectedDirectory = moduleInstance.returnSelectedDirectory(config['steam_vdf_registry'], config['terrariaSteamDir'], config['defSteamFolder'], config['terrariaSelectedDirSuffix'])
 
+        console.log(selectedDirectory)
+
         function filterRelease(release) {
             // Filter out prereleases.
             return release.prerelease === false;

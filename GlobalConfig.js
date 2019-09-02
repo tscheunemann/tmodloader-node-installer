@@ -2,9 +2,11 @@ class GlobalConfig {
     myInstance() {
       const fs = require('fs');
         return {
-            publicMethod1:
+            returnxmodrTempDir:
                 function () {
-                    console.log("test")
+                  const tempDirectory = require('temp-dir');
+                  let xmodrTempDir = `${tempDirectory}/xmodr-tmp`
+                  return xmodrTempDir;
                 },
             returnSelectedDirectory:
                 function (vdfRegistryVar, terrariaSteamInstallationDir, defaultSteamFolder, macSelectedDir) {
@@ -35,7 +37,26 @@ class GlobalConfig {
 
                   return selectedDirectory;
 
-                }
+                },
+            checkIfDirectoryExists:
+                function (directory, errorMessage, callback) {
+
+                  fs.stat(directory, function(err, stats) {
+                    //Check if error defined and the error code is "not exists"
+                    if (err && err.errno === 34) {
+                      throw errorMessage;
+                    } else {
+                      //just in case there was a different error:
+                      callback(err)
+                    }
+                  });
+
+                },
+            unzipper:
+                function () {
+                  
+                  console.log("Test")
+                },
         }
     }
 }

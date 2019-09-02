@@ -10,33 +10,25 @@ class MoveMods {
 
   moveMods_cb(config) {
   //  const unzip = require('unzip');
+    const Seven = require('node-7z');
     const path = require('path');
     const fs = require('fs-extra');
     const ncp = require('ncp').ncp;
+    const GlobalConfig = require('./GlobalConfig');
     const readline = require('readline').createInterface({
       input: process.stdin,
       output: process.stdout
     })
-    const GlobalConfig = require('./GlobalConfig');
     let globalconf = new GlobalConfig;
-    let modPath;
-
-    // Example of the module pattern:
     let moduleInstance = globalconf.myInstance();
+    let modPath;
+    let fileExtensions = ['.zip', '.rar', '.7z']
+    let checkIfError = "Launch Terraria with tModLoader installed at least once!";
+    let tempDirectory = moduleInstance.returnxmodrTempDir();
 
-    function checkDirectory(directory, callback) {
-      fs.stat(directory, function(err, stats) {
-        //Check if error defined and the error code is "not exists"
-        if (err && err.errno === 34) {
-          throw "Launch Terraria with tModLoader installed at least once!";
-        } else {
-          //just in case there was a different error:
-          callback(err)
-        }
-      });
-    }
+    console.log(tempDirectory)
 
-    checkDirectory(config['terrariaModsFolder'], function(error) {
+    moduleInstance.checkIfDirectoryExists(config['terrariaModsFolder'], checkIfError, function(error) {
       if (error) {
         throw "Launch Terraria with tModLoader installed at least once!";
       }
@@ -47,38 +39,41 @@ class MoveMods {
 
     function ifModIsZipped(directoryofmod, pathofmods, callback) {
 
-      // This function checks if the file provided is compressed using either .zip, .rar or .7z
       if (path.extname(directoryofmod) === '.zip') {
-        console.log("This is a zip file")
+        console.log("This is a zip")
+        let myStream = Seven.extract(directoryofmod, config['terrariaModsFolder'], {
+          recursive: true,
+          $cherryPick: '*.tmod'
+        })
+
       }
 
       else if (path.extname(directoryofmod) === '.7z') {
-        console.log("This is a 7zip file")
+
+        console.log("This is a 7z")
+        let myStream = Seven.extract(directoryofmod, config['terrariaModsFolder'], {
+          recursive: true,
+          $cherryPick: '*.tmod'
+        })
+
       }
 
-      else if (path.extname(directoryofmod) === '.rar') {
-        console.log("This is a rar file")
+      else if (path.extname(directoryofmod) === '.tmod') {
+
+        ncp.limit = 16;
+        ncp(`${directoryofmod}`, `${config['terrariaModsFolder']}/Mods/${pathofmods}`, function (err) {
+          if (err) {
+            return console.error("Please input a proper mod path.");
+          }
+          console.log('done!');
+        });
+
       }
 
-
-      callback(directoryofmod, pathofmods);
-    }
-
-    function moveUsersMods(directoryofmod, pathofmods) {
-
-      // This checks if the file provided is a .tmod
-      if (path.extname(directoryofmod) != '.tmod') {
-        throw "This isn't a mod! The file needs to end in .tmod!"
+      else {
+        throw "Please input a .tmod or a zipped file containing a .tmod"
       }
 
-      // This copies the mod to the Mods folder.
-      ncp.limit = 16;
-      ncp(`${directoryofmod}`, `${config['terrariaModsFolder']}/Mods/${pathofmods}`, function (err) {
-        if (err) {
-          return console.error("Please input a proper mod path.");
-        }
-        console.log('done!');
-      });
     }
 
     function getUserInput() {
@@ -92,7 +87,7 @@ class MoveMods {
         let bruhmodpath = modPath.trim();
 
         // moveUsersMods(modPath);
-        ifModIsZipped(bruhmodpath, realModPath, moveUsersMods);
+        ifModIsZipped(bruhmodpath, realModPath);
         readline.close()
       })
     }
