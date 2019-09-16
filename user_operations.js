@@ -97,4 +97,8 @@ class Facade {
 }
 
 Facade = new Facade();
-Facade.install_tmod();
+
+window.onload = function() {
+    console.log("script #2: %o", document.getElementById("install_btn"));
+    document.getElementById("install_btn").onclick = function () { alert('hello!'); };
+};

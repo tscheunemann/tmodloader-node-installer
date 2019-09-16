@@ -18,18 +18,20 @@
   font-size: 20px;
   color: white;
   -webkit-app-region: no-drag;
-  padding-top: 100px;
-  padding-left: 100px;
+  margin-top: 100px;
+  margin-left: 100px;
+  float: left;
 }
 .install_mods_btn {
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    -webkit-app-region: no-drag;
-    padding-bottom: 300px;
-    padding-left: 730px;
-    margin-top:-54px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  -webkit-app-region: no-drag;
+  display: inline-block;
+  float: right;
+  padding-right: 100px;
+  padding-top: 100px
 }
 ::-webkit-scrollbar {
 display: none;

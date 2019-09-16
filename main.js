@@ -54,6 +54,8 @@ app.on('ready', function () {
         mainWindow = null;
     });
 
+    mainWindow.setMenuBarVisibility(false);
+
     // Enable keyboard shortcuts for Developer Tools on various platforms.
     let platform = os.platform();
 
