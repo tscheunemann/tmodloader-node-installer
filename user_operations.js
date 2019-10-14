@@ -85,20 +85,14 @@ class Facade {
             });
           });
         }
-
         downloadtModResources(movetModLoaderFiles);
-
       }
-
     install_tmod() {
         this.handler.install_tmod(this.install_tmod_cb);
-
     }
 }
-
-Facade = new Facade();
-
-window.onload = function() {
-    console.log("script #2: %o", document.getElementById("install_btn"));
-    document.getElementById("install_btn").onclick = function () { alert('hello!'); };
-};
+module.exports = Facade;
+// window.onload = function() {
+//     console.log("script #2: %o", document.getElementById("install_btn"));
+//     document.getElementById("install_btn").onclick = function () { alert('hello!'); };
+// };

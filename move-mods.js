@@ -78,28 +78,43 @@ class MoveMods {
 
     function getUserInput() {
 
-      readline.question(`Drag and drop your mod in this window and press ENTER: `, (modPath) => {
-        // This splits the string at the slash
-        let stringSplit = modPath.split("/");
-        // This extracts the last part of the string, the file name
-        let realModPath = stringSplit[stringSplit.length - 1];
-        // This cuts the whitespace i.e if there is a space in the string
-        let bruhmodpath = modPath.trim();
+      const {dialog} = require('electron').remote;
 
-        // moveUsersMods(modPath);
-        ifModIsZipped(bruhmodpath, realModPath);
-        readline.close()
-      })
+      // readline.question(`Drag and drop your mod in this window and press ENTER: `, (modPath) => {
+      //   // This splits the string at the slash
+      //   let stringSplit = modPath.split("/");
+      //   // This extracts the last part of the string, the file name
+      //   let realModPath = stringSplit[stringSplit.length - 1];
+      //   // This cuts the whitespace i.e if there is a space in the string
+      //   let bruhmodpath = modPath.trim();
+      //
+      //   // moveUsersMods(modPath);
+      //   ifModIsZipped(bruhmodpath, realModPath);
+      //   readline.close()
+      // })
+
+      dialog.showOpenDialog({
+        properties: ['openFile', 'multiSelections']
+      }, function (files) {
+          if (files !== undefined) {
+            // handle files
+            ifModIsZipped(files[0])
+          }
+        });
+
     }
 
     getUserInput();
-
   }
 
-  moveMods() {
+  moveMods(mods) {
       this.handler.moveMods(this.moveMods_cb);
   }
 }
 
-MoveMods = new MoveMods();
-MoveMods.moveMods();
+module.exports = MoveMods;
+
+// window.onload = function() {
+//     console.log("script #2: %o", document.getElementById("install_mods_btn"));
+//     document.getElementById("install_mods_btn").onclick = MoveMods.moveMods();
+// };

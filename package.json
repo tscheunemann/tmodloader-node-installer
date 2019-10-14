@@ -1,11 +1,11 @@
 {
-  "name": "electron-and-bootstrap-skeleton-project",
-  "productName": "Electron and Boostrap Skeleton Project",
+  "name": "xmodr",
+  "productName": "xmodr",
   "version": "1.0.0",
-  "description": "A skeleton project that includes a ready to go Electron and Bootstrap environment.",
+  "description": "xmodr - simple to use tModLoader tool.",
   "main": "main.js",
   "repository": "",
-  "author": "Jason Scheunemann",
+  "author": "lando",
   "license": "GPLv2",
   "devDependencies": {
     "chai": "^4.1.2",

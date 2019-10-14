@@ -1,7 +1,6 @@
 class HandlerFactory {
 
     constructor() {
-
     }
 
     getImplementation() {

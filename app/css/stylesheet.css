@@ -21,6 +21,7 @@
   margin-top: 100px;
   margin-left: 100px;
   float: left;
+  /* display: none; */
 }
 .install_mods_btn {
   font-family: 'Roboto', sans-serif;
@@ -31,7 +32,25 @@
   display: inline-block;
   float: right;
   padding-right: 100px;
-  padding-top: 100px
+  padding-top: 100px;
+  /*display: none; */
+}
+.progress-bar {
+  padding-top: 75px;
+  padding-right: 400px;
+  padding-left: 485px;
+  background-color: white;
+  text-align: center;
+  font-weight: lighter;
+  display: none;
+}
+.loading-xmodr-text {
+  padding-top: 100px;
+  padding-right: 400px;
+  padding-left: 485px;
+  text-align: center;
+  color: black;
+  display:none;
 }
 ::-webkit-scrollbar {
 display: none;
