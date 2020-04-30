@@ -35,7 +35,7 @@
     "electron-json-storage": "^4.1.6",
     "fs-extra": "^8.1.0",
     "github-download": "^0.5.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ls": "^0.2.1",
     "move-file": "^1.2.0",
     "mv": "^2.1.1",
