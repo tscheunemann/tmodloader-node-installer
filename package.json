@@ -12,7 +12,7 @@
     "electron-packager": "^12.1.0",
     "javascript-state-machine": "^3.1.0",
     "jshint": "^2.9.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mocha": "^5.2.0"
   },
   "scripts": {
